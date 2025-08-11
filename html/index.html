@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Graphing Calculator</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm/css/xterm.css"> <!-- Terminal Styles -->
+    </head>
+
+    <body>
+        <div class="terminal"></div>
+
+        <script defer src="https://cdn.jsdelivr.net/npm/xterm/lib/xterm.min.js"></script> <!-- Terminal Script -->
+        <script defer src="../js/graphingCalculator.js"></script>
+    </body>
+
+    <style>
+        body
+        {
+            margin: 0%;
+            padding: 0%;
+
+            height: 100%;
+            width: 100%;
+        }
+
+        .terminal
+        {
+            position: absolute;
+
+            top: 50%;
+            left: 50%;
+
+            height: 60%;
+            width: 60%;
+
+            transform: translate(-50%, -50%);
+
+            border: gray solid 2px;
+
+            box-shadow: 10px 10px 15px 0 rgba(0, 0, 0, 0.5);
+
+            overflow-x: hidden;
+        }
+
+        .xterm, .xterm-viewport, .xterm-scroll-area, .xterm-screen
+        {
+            height: 100%;
+            width: 100%;
+
+            padding: 1em 0.5em !important;
+        }
+
+        .xterm-screen, .xterm-rows
+        {
+            height: 100% !important;
+            width: 100% !important;
+        }
+    </style>
+</html>
