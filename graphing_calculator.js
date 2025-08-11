@@ -17,39 +17,6 @@ const term = new Terminal(
 const terminal = document.querySelector(".terminal")
 term.open(terminal);
 
-const textarea = terminal.querySelector("textarea");
-let terminal_focus;
-
-if(textarea)
-{
-    textarea.addEventListener("focus", () =>
-    {
-        document.removeEventListener("wheel", scroll_zoom, { passive: false });
-        terminal_focus = true;
-        
-        if(hint.style.opacity !== 0)
-        {
-            hint.style.animation = "none"; //Stop Animation
-            void hint.offsetHeight; //Force Reflow
-            hint.style.opacity = 0;
-        }
-    });
-
-    textarea.addEventListener("blur", () =>
-    {
-        document.addEventListener("wheel", scroll_zoom, { passive: false });
-        terminal_focus = false;
-    });
-}
-
-terminal.addEventListener("wheel", (event) =>
-{
-    if(!terminal_focus) event.preventDefault();
-}, 
-{
-    passive: false
-});
-
 //Declare Variables
 let user_input = "";
 let is_prompting = false; // Prevent double input
