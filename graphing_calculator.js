@@ -76,25 +76,26 @@ let zeroTheFunction;
 
 term.write(start_prompt + command_prompt);
 
-// Handle keyboard input
-term.onKey(({ key, domEvent }) =>
+//Handle keyboard input
+term.onData(data =>
 {
-    if(is_prompting) return; // Ignore key presses during prompts
+    if(is_prompting) return; //Ignore input during prompts
 
-    if(key === '\r')
+    if(data === '\r')
     {
         term.write('\r\n');
-        if (user_input.trim() !== "") handleCompleteInput(user_input.trim());
-        user_input = ""; // reset input
+
+        if(user_input.trim() !== "") handleCompleteInput(user_input.trim());
+        user_input = ""; //reset input
 
         if(!is_prompting)
         {
             term.write(command_prompt);
         }
     }
-    else if(domEvent.key === "Backspace")
-    {
-        if (user_input.length > 0)
+    else if(data === '\u007F')
+    {  //Backspace (DEL character)
+        if(user_input.length > 0)
         {
             user_input = user_input.slice(0, -1);
             term.write('\b \b');
@@ -102,8 +103,8 @@ term.onKey(({ key, domEvent }) =>
     }
     else
     {
-        user_input += key;
-        term.write(key);
+        user_input += data;
+        term.write(data);
     }
 });
 
